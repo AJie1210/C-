@@ -21,8 +21,9 @@ int main()
                 if (int(MP[j]) == 76 || int(MP[j]) == 108)
                 {
                     y = j;
+                    str.erase(x, y);
+                    break;
                 }
-                str.erase(x, y);
             }
         }
     }
