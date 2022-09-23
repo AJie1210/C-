@@ -11,20 +11,19 @@ int main()
     cin.getline(MP, 200);
     str = MP;
 
-    for (i = 0; i < 200; i++)
+    for (i = 199; i >= 0; i--)
     {
         if (int(MP[i]) == 65 || int(MP[i]) == 97)
         {
             x = i;
-            for (j = 0; j < 200; j++)
+            for (j = x; j < 200; j++)
             {
                 if (int(MP[j]) == 76 || int(MP[j]) == 108)
                 {
                     y = j;
                 }
+                str.erase(x, y);
             }
-            str.erase(x, y);
-            break;
         }
     }
 
