@@ -6,69 +6,78 @@
 using namespace std;
 int main()
 {
-
     string str;
-    char MP[200];
-    int i, j, x = 0, y = 0;
-    int z = 0, t = 0, l;
+    char ENG[200];
+    int i, r = 0, j1, j2, k, x = -1, count = 0, recount, end;
 
-    cin.getline(MP, 200);
-    str = MP;
+    cin.getline(ENG, 190);
+    str = ENG;
 
-    while (true)
+    for (i = 0; i <= 190; i++)
     {
-        memset(MP, 0, 200);
-        vector<char> vec_str(str.begin(), str.end());
-        copy(str.begin(), str.end(), MP);
-
-        for (i = 0; i < 200; i++)
+        x = x + 1;
+        if (ENG[i] == ' ' || ENG[i] == '\0')
         {
-            if (MP[i] == 97 || MP[i] == 65)
+            recount = x;
+            if (ENG[i] == '\0')
             {
-                for (t = 0; t < 1; t++)
-                {
-                    x = i + 1;
-                }
-                cout << "i = " << i << endl;
-                cout << "x = " << x << endl;
-                for (j = x; j < 200; j++)
-                {
-                    if (MP[j] == 97 || MP[j] == 65)
-                    {
-                        break;
-                    }
-                    if (MP[j] == 76 || MP[j] == 108)
-                    {
-                        y = j;
-                        cout << "j = " << j << endl;
-                        l = 1;
-                        break;
-                    }
-                }
+                recount = x;
             }
-            t = 0;
-            if (l == 1)
+            if (recount > count)
             {
-                break;
+                count = recount;
             }
-            if (int(MP[i]) == NULL)
-            {
-                z = 1;
-                break;
-            }
-            cout << "z b = " << z << endl;
+            x = -1;
         }
-        if (z == 1)
+        if (int(ENG[i]) == '\0')
         {
-            cout << "z a = " << z << endl;
             break;
         }
-
-        str = str.erase(x, y);
-        l = 0;
     }
 
-    cout << "Ans = " << str << endl;
+    cout << "Max = " << count << endl;
+    cout << str << endl;
+
+    for (j1 = 0; j1 < count + 2; j1++)
+    {
+        cout << "*";
+    }
+    cout << endl;
+    while (true)
+    {
+        cout << "*";
+        for (i = 0; i <= 190; i++)
+        {
+            cout << ENG[i];
+            r = r + 1;
+
+            if (ENG[i] == ' ')
+            {
+                for (k = 0; k < count - r; k++)
+                {
+                    cout << " ";
+                }
+                cout << "*" << endl;
+                cout << "*";
+                r = 0;
+            }
+            if (ENG[i] == '\0')
+            {
+                cout << "*" << endl;
+                end = 1;
+                break;
+            }
+        }
+        if (end == 1)
+        {
+            break;
+        }
+    }
+    for (j2 = 0; j2 < count + 2; j2++)
+    {
+        cout << "*";
+    }
+    cout << endl;
 
     system("pause");
     return 0;
