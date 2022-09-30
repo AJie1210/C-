@@ -1,84 +1,33 @@
 #include <iostream>
 #include <string>
 #include <cstdlib>
-#include <vector>
 #include <string.h>
 using namespace std;
 int main()
 {
-    string str;
-    char ENG[200];
-    int i, r = 0, j1, j2, k, x = -1, count = 0, recount, end;
+    /*
+    (1) 使用C(C++)語言，輸入正整數n，輸出1~n的所有排列。
+    (2) 例如：輸入3，輸出為123; 132; 213; 231; 312; 321。
+    (3) 程式架構需滿足：
+    n=1;
+    repeat
+      input n;
+      output the permutations of 1~n;
+    until n==0;
+    */
 
-    cin.getline(ENG, 190);
-    str = ENG;
-
-    for (i = 0; i <= 190; i++)
+    int n, x, i;
+    int array[100];
+    cin >> n;
+    for (i = 1; i <= n; i++)
     {
-        x = x + 1;
-        if (ENG[i] == ' ' || ENG[i] == '\0')
-        {
-            recount = x;
-            if (ENG[i] == '\0')
-            {
-                recount = x;
-            }
-            if (recount > count)
-            {
-                count = recount;
-            }
-            x = -1;
-        }
-        if (int(ENG[i]) == '\0')
-        {
-            break;
-        }
+        array[i] = i;
     }
 
-    cout << "Max = " << count << endl;
-    cout << str << endl;
-
-    for (j1 = 0; j1 < count + 2; j1++)
+    for (i = 1; i <= n; i++)
     {
-        cout << "*";
+        cout << array[i] << endl;
     }
-    cout << endl;
-    while (true)
-    {
-        cout << "*";
-        for (i = 0; i <= 190; i++)
-        {
-            cout << ENG[i];
-            r = r + 1;
-
-            if (ENG[i] == ' ')
-            {
-                for (k = 0; k < count - r; k++)
-                {
-                    cout << " ";
-                }
-                cout << "*" << endl;
-                cout << "*";
-                r = 0;
-            }
-            if (ENG[i] == '\0')
-            {
-                cout << "*" << endl;
-                end = 1;
-                break;
-            }
-        }
-        if (end == 1)
-        {
-            break;
-        }
-    }
-    for (j2 = 0; j2 < count + 2; j2++)
-    {
-        cout << "*";
-    }
-    cout << endl;
-
     system("pause");
     return 0;
 }
