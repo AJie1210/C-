@@ -1,33 +1,48 @@
 #include <iostream>
-#include <string>
-#include <cstdlib>
-#include <string.h>
+#include <fstream>
+#include <cmath>
+
 using namespace std;
 int main()
 {
-    /*
-    (1) 使用C(C++)語言，輸入正整數n，輸出1~n的所有排列。
-    (2) 例如：輸入3，輸出為123; 132; 213; 231; 312; 321。
-    (3) 程式架構需滿足：
-    n=1;
-    repeat
-      input n;
-      output the permutations of 1~n;
-    until n==0;
-    */
+  ifstream file("a.txt");
+  double num[200] = {0.0};
+  char op[200] = {'\0'};
+  int index = 0;
+  while (file.peek() != EOF)
+  {
+    file >> num[index];
+    file >> op[index];
+    index++;
+  }
+  file.close();
 
-    int n, x, i;
-    int array[100];
-    cin >> n;
-    for (i = 1; i <= n; i++)
+  double result = num[0];
+  for (int i = 0; i < index; i++)
+  {
+    cout << num[i] << op[i];
+    if (op[i] == '+')
     {
-        array[i] = i;
+      result = result + num[i + 1];
     }
-
-    for (i = 1; i <= n; i++)
+    else if (op[i] == '-')
     {
-        cout << array[i] << endl;
+      result = result - num[i + 1];
     }
-    system("pause");
-    return 0;
+    else if (op[i] == '*')
+    {
+      result = result * num[i + 1];
+    }
+    else if (op[i] == '/')
+    {
+      result = result / num[i + 1];
+    }
+    else if (op[i] == '=')
+    {
+      break;
+    }
+  }
+  cout << round(result);
+  system("pause");
+  return 0;
 }
